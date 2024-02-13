@@ -1,9 +1,10 @@
 <script>
+import { store } from '../store'
 export default {
     name: 'AppHeader',
     data() {
         return {
-
+            store
         }
     }
 }
@@ -15,8 +16,8 @@ export default {
                 <img src="../assets/img/netflix-logo-png-download-11660600814vkfgjh8swu.png" alt="">
             </figure>
             <div class="navigationSide">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <input v-model="store.searchText" type="text" placeholder="Search..">
+                <button @click.prevent="$emit('filmSearch')" type="button"><i class="fa fa-search"></i></button>
             </div>
         </nav>
     </header>
