@@ -27,7 +27,6 @@ export default {
     }
     main{
         padding: 1em;
-        // border: 2px solid blue;
         width: 90%;
         max-width: 1400px;
         margin: 0 auto;
