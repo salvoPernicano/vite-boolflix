@@ -1,35 +1,51 @@
 <script>
 export default {
     name: 'FilmCards',
+    props : [
+        'propsObject'
+    ],
     data() {
-
-
-        return {}
+        return {
+            imagePath : 'https://image.tmdb.org/t/p/w300',
+            imgError : false
+        }
+    },
+    methods : {
+        handleImgError() {
+      this.imgError = true;
+    },
     }
 }
 </script>
 <template>
-    <div class="card">
-        <img src="../../assets/img/jon-tyson-Wb6EVL-tRk8-unsplash.jpg" alt="">
-        <div class="movieInfo">
-            <h2>Titolo film</h2>
-            <h3>Titolo film originale</h3>
-            <h3>Lingua originale</h3>
-            <span>VOTO</span>
-        </div>
+    <div class="card" :style="{ background: imgError ? 'black' : 'none' }">
+      <img
+        :src="imagePath + propsObject.poster_path"
+        alt="Film Poster"
+        @error="handleImgError"
+        :class="{ 'hidden': imgError }"
+      >
+      <div class="movieInfo">
+        <h2>{{ propsObject.title }}</h2>
+        <h3>{{ propsObject.original_title }}</h3>
+        <h3>{{ propsObject.original_language }}</h3>
+        <span>{{ Math.min(Math.ceil(propsObject.vote_average / 2), 5) }}</span>
+      </div>
     </div>
-</template>
+  </template>
 
 
 <style lang="scss" scoped>
 @use '../../assets/scss/style.scss' as *;
 
 .card {
-    width: 20%; /* Calcola la larghezza con margine incluso per ottenere 5 elementi per riga */
-      margin-bottom: 10px; /* Aggiungi margine inferiore per spaziatura tra le card */
-      box-sizing: border-box; /* Assicurati che il margine non aumenti la larghezza totale */
-      max-width: 250px; /* Imposta la larghezza massima della card */
-      border: 1px solid #ccc; /* Aggiungi un bordo per evidenziare le card */
+    height: 350px;
+    width: 20%;
+      margin-bottom: 10px; 
+      box-sizing: border-box; 
+      max-width: 250px; 
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
       position: relative;
       text-align: center;
 
@@ -57,6 +73,10 @@ export default {
         }
     }
 }
+.hidden {
+    display: none;
+  }
+
 @media screen and (min-width: 576px) and (max-width: 992px) {
   .card {
 flex-basis: 50%;

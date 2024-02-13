@@ -1,4 +1,5 @@
 <script>
+import { store } from '../store'
 import FilmCards from './Cards/FilmCards.vue';
 export default {
     name : 'AppMain',
@@ -7,14 +8,14 @@ export default {
     },
     data() {
         return {
-
+            store
         }
     }
 }
 </script>
 <template>
 <main>
-    <FilmCards/>
+    <FilmCards v-for="(element,index) in store.researchArray" :key="index" :propsObject="element" />
 </main>
 </template>
 
@@ -26,7 +27,7 @@ export default {
     }
     main{
         padding: 1em;
-        border: 2px solid blue;
+        // border: 2px solid blue;
         width: 90%;
         max-width: 1400px;
         margin: 0 auto;
