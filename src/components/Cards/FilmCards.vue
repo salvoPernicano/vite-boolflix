@@ -27,8 +27,8 @@ export default {
       >
       <div class="movieInfo">
         <h2>{{ propsObject.title }}</h2>
-        <h3>{{ propsObject.original_title }}</h3>
-        <h3>{{ propsObject.original_language }}</h3>
+        <h5>{{'Titolo orig : '+" "+ propsObject.original_title }}</h5>
+        <h3>{{'lingua originale'+ ' ' +propsObject.original_language.toLocaleUpperCase() }}</h3>
         <span>{{ Math.min(Math.ceil(propsObject.vote_average / 2), 5) }}</span>
       </div>
     </div>
