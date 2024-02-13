@@ -29,9 +29,11 @@ export default {
 
 header {
     background-color: $navColor;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 nav {
+
     margin: 0 auto;
     width: 90%;
     max-width: 1400px;

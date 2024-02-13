@@ -29,7 +29,7 @@ export default {
         padding: 1em;
         width: 90%;
         max-width: 1400px;
-        margin: 0 auto;
+        margin: 20px auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;

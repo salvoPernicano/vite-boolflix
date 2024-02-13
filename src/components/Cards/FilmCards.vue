@@ -44,7 +44,7 @@ export default {
       margin-bottom: 10px; 
       box-sizing: border-box; 
       max-width: 250px; 
-    border: 1px solid black;
+    // border: 1px solid black;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
       position: relative;
       text-align: center;
@@ -68,8 +68,11 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
+        transition: all .3s;
         &:hover{
             opacity: 1;
+            border: 1px solid white;
+            box-shadow: rgb(255, 255, 255) 0px 0px 20px, rgba(255, 255, 255, 0.801) 0px 0px 20px;
         }
     }
 }
