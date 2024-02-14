@@ -58,6 +58,12 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   position: relative;
   text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+    
+  &:hover{
+    transform: scale(1.1);
+  }
 
   img {
     width: 100%;
