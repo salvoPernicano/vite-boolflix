@@ -7,7 +7,9 @@ export default {
     data() {
         return {
             imagePath : 'https://image.tmdb.org/t/p/w300',
-            imgError : false
+            imgError : false,
+            flagPath : '../src/assets/img/1x1/',
+            flagPathError : '../src/assets/img/1x1/flag-error.svg'
         }
     },
     methods : {
@@ -20,15 +22,18 @@ export default {
 <template>
     <div class="card" :style="{ background: imgError ? 'black' : 'none' }">
       <img
-        :src="imagePath + propsObject.poster_path"
+        :src="imgError ? flagPathError : imagePath + propsObject.poster_path"
         alt="Film Poster"
         @error="handleImgError"
-        :class="{ 'hidden': imgError }"
+        
       >
       <div class="movieInfo">
         <h2>{{ propsObject.title }}</h2>
         <h5>{{'Titolo orig : '+" "+ propsObject.original_title }}</h5>
-        <h3>{{'lingua originale'+ ' ' +propsObject.original_language.toLocaleUpperCase() }}</h3>
+        <div>
+          <span> Lingua originale : </span>
+          <img :src="imgError ? flagPathError : flagPath + propsObject.original_language + '.svg'" alt="" class="flag"   @error="handleImgError" >
+        </div>
         <span>{{ Math.min(Math.ceil(propsObject.vote_average / 2), 5) }}</span>
       </div>
     </div>
@@ -37,6 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 @use '../../assets/scss/style.scss' as *;
+
 
 .card {
     height: 350px;
@@ -79,6 +85,12 @@ export default {
 .hidden {
     display: none;
   }
+
+  img.flag{
+  width: 30px;
+  height: 20px;
+  object-fit: cover;
+}
 
 @media screen and (min-width: 576px) and (max-width: 992px) {
   .card {

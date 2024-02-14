@@ -16,7 +16,7 @@ export default {
                 <img src="../assets/img/netflix-logo-png-download-11660600814vkfgjh8swu.png" alt="">
             </figure>
             <div class="navigationSide">
-                <input @keyup.enter="$emit('filmSearch')" v-model="store.searchText" type="text" placeholder="Search..">
+                <input @keyup.enter.prevent="$emit('filmSearch')" v-model="store.searchText" type="text" placeholder="Search..">
                 <button @click.prevent="$emit('filmSearch')" type="button"><i class="fa fa-search"></i></button>
             </div>
         </nav>
