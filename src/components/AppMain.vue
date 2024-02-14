@@ -1,10 +1,12 @@
 <script>
 import { store } from '../store'
 import FilmCards from './Cards/FilmCards.vue';
+import SeriesCards from './Cards/SeriesCards.vue';
 export default {
     name : 'AppMain',
     components : {
-        FilmCards
+        FilmCards,
+        SeriesCards
     },
     data() {
         return {
@@ -15,7 +17,14 @@ export default {
 </script>
 <template>
 <main>
-    <FilmCards v-for="(element,index) in store.researchArray" :key="index" :propsObject="element" />
+    <h1>Films</h1>
+    <div class="filmContainer">
+        <FilmCards v-for="(element,index) in store.researchArray" :key="index" :propsObject="element" />
+    </div>
+    <h1>Tv Series</h1>
+    <div class="filmContainer">
+        <SeriesCards v-for="(element,index) in store.seriesArray" :key="index" :propsObject="element" />
+    </div>
 </main>
 </template>
 
@@ -30,11 +39,21 @@ export default {
         width: 90%;
         max-width: 1400px;
         margin: 20px auto;
+    }
+
+    h1 {
+        color: white;
+        font-size: 3rem;
+        margin-bottom: 1em;
+    }
+
+    .filmContainer{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         gap: 15px;
+        margin-bottom: 20px;
     }
 
 </style>

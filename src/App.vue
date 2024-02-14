@@ -17,15 +17,21 @@ export default {
     methods : {
         getFilm(){
             store.loading = true;
-            store.apiUrl = 'https://api.themoviedb.org/3/search/movie?api_key=aac6de8a780b39acd1a8491f2ceaec74&query='
+            store.apiUrlMovie = 'https://api.themoviedb.org/3/search/movie?api_key=aac6de8a780b39acd1a8491f2ceaec74&query='
+            store.apiUrlTv = 'https://api.themoviedb.org/3/search/tv?api_key=aac6de8a780b39acd1a8491f2ceaec74&query='
             if (store.searchText !== ""){
-                store.apiUrl += store.searchText
+                store.apiUrlMovie += store.searchText;
+                store.apiUrlTv += store.searchText
             };
 
-            axios.get(store.apiUrl).then(response => {
+            axios.get(store.apiUrlMovie).then(response => {
                 console.log(response.data.results);
                 store.researchArray = response.data.results
-            })
+            });
+            axios.get(store.apiUrlTv).then(response => {
+                console.log(response.data.results);
+                store.seriesArray = response.data.results
+            });
             store.loading = false;
         }
     }

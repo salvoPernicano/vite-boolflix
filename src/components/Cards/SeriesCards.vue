@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'FilmCards',
+  name: 'SeriesCards',
   props: [
     'propsObject'
   ],
@@ -25,8 +25,8 @@ export default {
   <div class="card" :style="{ background: imgError ? 'black' : 'none' }">
     <img :src="imgError ? flagPathError : imagePath + propsObject.poster_path" alt="Film Poster" @error="handleImgError">
     <div class="movieInfo">
-      <h2>{{ propsObject.title }}</h2>
-      <h5>{{ 'Titolo orig : ' + " " + propsObject.original_title }}</h5>
+      <h2>{{ propsObject.name }}</h2>
+      <h5>{{ 'Titolo orig : ' + " " + propsObject.original_name }}</h5>
       <div>
         <span> Lingua originale : </span>
         <img :src="imgError ? flagPathError : flagPath + propsObject.original_language + '.svg'" alt="" class="flag"
@@ -55,7 +55,6 @@ export default {
   margin-bottom: 10px;
   box-sizing: border-box;
   max-width: 250px;
-  // border: 1px solid black;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   position: relative;
   text-align: center;
