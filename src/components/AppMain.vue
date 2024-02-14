@@ -17,11 +17,11 @@ export default {
 </script>
 <template>
 <main>
-    <h1>Films</h1>
+    <h1 v-show="store.researchArray.length !== 0">Films</h1>
     <div class="filmContainer">
         <FilmCards v-for="(element,index) in store.researchArray" :key="index" :propsObject="element" />
     </div>
-    <h1>Tv Series</h1>
+    <h1 v-show="store.seriesArray.length !== 0">Tv Series</h1>
     <div class="filmContainer">
         <SeriesCards v-for="(element,index) in store.seriesArray" :key="index" :propsObject="element" />
     </div>
