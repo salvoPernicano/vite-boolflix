@@ -11,17 +11,18 @@ export default {
   },
   data() {
     return {
-      store: store
+      store: store,
     };
-  },
-  }
+
+},
+}
 
 </script>
 
 <template>
-  <main>
+  <main @trailerShown="manageTrailerShow">
     <h1 v-show="store.researchArray.length !== 0">Films</h1>
-    <div class="filmContainer">
+    <div  class="filmContainer">
       <FilmCards v-for="(element, index) in store.researchArray" :key="index" :propsObject="element" />
     </div>
     <h1 v-show="store.seriesArray.length !== 0">Tv Series</h1>

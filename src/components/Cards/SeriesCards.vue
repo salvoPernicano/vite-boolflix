@@ -9,6 +9,7 @@ export default {
     return {
       trailerUrl : '',
       imagePath: 'https://image.tmdb.org/t/p/w300',
+      posterError : '../src/assets/img/No-Image-Placeholder.svg.png',
       imgError: false,
       trailerShow : false,
       flagPath: '../src/assets/img/1x1/',
@@ -44,8 +45,8 @@ export default {
     <button  @click="this.trailerShow = !this.trailerShow;" class="closeTrailer"><i class="fa-solid fa-xmark"></i></button>
 
   </div>
-  <div class="card"  :style="{ background: imgError ? 'black' : 'none' }">
-    <img :src="imgError ? flagPathError : imagePath + propsObject.poster_path" alt="Film Poster" @error="handleImgError">
+  <div class="card" v-if="propsObject.vote_count > 10" :style="{ background: imgError ? 'black' : 'none' }">
+    <img :src="imgError ? posterError : imagePath + propsObject.poster_path" alt="Film Poster" @error="handleImgError">
     <div class="movieInfo">
       <h2>{{ propsObject.name }}</h2>
       <h5>{{ 'Titolo orig : ' + " " + propsObject.original_name }}</h5>

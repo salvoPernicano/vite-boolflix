@@ -13,6 +13,7 @@ export default {
       trailerShow : false,
       flagPath: '../src/assets/img/1x1/',
       flagPathError: '../src/assets/img/1x1/flag-error.svg',
+      posterError : '../src/assets/img/No-Image-Placeholder.svg.png',
       fullStarPath : '../src/assets/img/full_star.svg',
       emptyStarPath : '../src/assets/img/empty_star.svg',
       trailerApi : 'https://api.themoviedb.org/3/movie/videos?language=en-IT&api_key=aac6de8a780b39acd1a8491f2ceaec74'
@@ -34,7 +35,6 @@ export default {
   }
 }
 
-
 </script>
 <template>
   <div class="movieTrailer"  v-if="trailerShow">
@@ -46,8 +46,8 @@ export default {
     <button  @click="this.trailerShow = !this.trailerShow;" class="closeTrailer"><i class="fa-solid fa-xmark"></i></button>
 
   </div>
-  <div class="card"  :style="{ background: imgError ? 'black' : 'none' }">
-    <img :src="imgError ? flagPathError : imagePath + propsObject.poster_path" alt="Film Poster" @error="handleImgError">
+  <div class="card" v-if="propsObject.vote_count > 10" :style="{ background: imgError ? 'black' : 'none' }">
+    <img :src="imgError ? posterError : imagePath + propsObject.poster_path" alt="Film Poster" @error="handleImgError">
     <div class="movieInfo">
       <h2>{{ propsObject.title }}</h2>
       <h5>{{ 'Titolo orig : ' + " " + propsObject.original_title }}</h5>
@@ -143,8 +143,8 @@ box-shadow: 4px 8px 13px 20px #dfdfdfb7;
 
 img.flag {
   width: 30px;
-  height: 20px;
-  object-fit: cover;
+  height: 22px;
+  object-fit:cover;
 }
 
 img.starItem {
