@@ -7,8 +7,10 @@ export default {
   ],
   data() {
     return {
+      trailerUrl : '',
       imagePath: 'https://image.tmdb.org/t/p/w300',
       imgError: false,
+      trailerShow : false,
       flagPath: '../src/assets/img/1x1/',
       flagPathError: '../src/assets/img/1x1/flag-error.svg',
       fullStarPath : '../src/assets/img/full_star.svg',
@@ -24,8 +26,10 @@ export default {
       const videoId = this.propsObject.id;
       this.trailerApi = `https://api.themoviedb.org/3/movie/${videoId}/videos?language=en-IT&api_key=aac6de8a780b39acd1a8491f2ceaec74`
       axios.get(this.trailerApi).then(response =>{
-        console.log(response.data.results[0])
+        console.log(response.data.results[0].key);
+        this.trailerUrl = `https://www.youtube.com/embed/${response.data.results[0].key}`;
       })
+      this.trailerShow = !this.trailerShow;
     }
   }
 }
@@ -33,16 +37,18 @@ export default {
 
 </script>
 <template>
+  <div class="movieTrailer"  v-if="trailerShow">
+    <iframe
+       :src="trailerUrl"
+       frameborder="1"
+       allowfullscreen
+     ></iframe>
+    <button  @click="this.trailerShow = !this.trailerShow;" class="closeTrailer"><i class="fa-solid fa-xmark"></i></button>
+
+  </div>
   <div class="card"  :style="{ background: imgError ? 'black' : 'none' }">
     <img :src="imgError ? flagPathError : imagePath + propsObject.poster_path" alt="Film Poster" @error="handleImgError">
     <div class="movieInfo">
-      <!-- <iframe
-      width="560"
-      height="315"
-      :src="propsObject."
-      frameborder="0"
-      allowfullscreen
-    ></iframe> -->
       <h2>{{ propsObject.title }}</h2>
       <h5>{{ 'Titolo orig : ' + " " + propsObject.original_title }}</h5>
       <div>
@@ -114,6 +120,21 @@ export default {
   }
 }
 
+
+.movieTrailer{
+  position: fixed;
+  top: 100px;
+  width: 1000px;
+  height: 80vh;
+  z-index: 99;
+}
+
+iframe{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  box-shadow: rgba(255, 255, 255, 0.8) 0px 2px 4px, rgba(255, 255, 255, 0.8) 0px 7px 13px -3px, rgba(0, 0, 0, 0.6) 0px -3px 0px inset;
+}
 .hidden {
   display: none;
 }
@@ -149,6 +170,26 @@ img.starItem {
     background-color: white;
     color: red;
     font-weight: bold;
+  }
+}
+
+.closeTrailer{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: -50px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border: 1px solid white;
+  transition: all .3s;
+  & .fa-xmark{
+    font-size: 1.5rem;
+  }
+  &:hover{
+    background-color: white;
+    cursor: pointer;
+    color: red;
   }
 }
 

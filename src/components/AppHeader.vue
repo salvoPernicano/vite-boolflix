@@ -29,7 +29,7 @@ export default {
 
 header {
     background-color: $navColor;
-    box-shadow: rgba(238, 238, 238, 0.3) 0px 5px 100px, rgba(87, 86, 86, 0.22) 0px 15px 30px;
+    box-shadow: rgba(238, 238, 238, 0.3) 0px 5px 20px, rgba(87, 86, 86, 0.22) 0px 15px 30px;
 }
 
 nav {
