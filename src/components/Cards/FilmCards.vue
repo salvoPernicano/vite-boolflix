@@ -134,6 +134,8 @@ iframe{
   width: 100%;
   position: relative;
   box-shadow: rgba(255, 255, 255, 0.8) 0px 2px 4px, rgba(255, 255, 255, 0.8) 0px 7px 13px -3px, rgba(0, 0, 0, 0.6) 0px -3px 0px inset;
+  -webkit-box-shadow: 4px 8px 13px 20px #dfdfdfb7;
+box-shadow: 4px 8px 13px 20px #dfdfdfb7;
 }
 .hidden {
   display: none;
