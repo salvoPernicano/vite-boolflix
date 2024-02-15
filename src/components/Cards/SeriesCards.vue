@@ -39,6 +39,7 @@ export default {
           </figure>
         </div>
         <p>{{ 'Based on '+ propsObject.vote_count + ' reviews' }}</p>
+        <button  @click="handleMouseOver" class="trailer">Watch Trailer</button>
       </span>
     </div>
   </div>
@@ -50,7 +51,7 @@ export default {
 
 
 .card {
-  height: 350px;
+  height: 300px;
   width: 20%;
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -60,6 +61,7 @@ export default {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s;
+  border: 1px solid white;;
     
   &:hover{
     transform: scale(1.1);
@@ -114,6 +116,23 @@ img.starItem {
   justify-content: center;
   align-items: center;
   gap: 2px;
+}
+
+
+.trailer{
+  border: none;
+  background-color: red;
+  color: white;
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px 2px;
+  transition: all .3s;
+  &:hover{
+    cursor: pointer;
+    background-color: white;
+    color: red;
+    font-weight: bold;
+  }
 }
 
 @media screen and (min-width: 576px) and (max-width: 992px) {

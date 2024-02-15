@@ -69,7 +69,7 @@ export default {
 
 
 .card {
-  height: 350px;
+  height: 300px;
   width: 20%;
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -79,6 +79,7 @@ export default {
   text-align: center;
   cursor: pointer;
   transition: all 0.3s;
+  border : 1px solid white;
 
   &:hover{
     transform: scale(1.1);

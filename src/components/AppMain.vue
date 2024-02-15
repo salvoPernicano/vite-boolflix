@@ -48,7 +48,7 @@ main {
 h1 {
   color: white;
   font-size: 3rem;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 .filmContainer {

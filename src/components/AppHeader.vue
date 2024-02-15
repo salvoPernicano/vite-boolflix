@@ -13,7 +13,7 @@ export default {
     <header>
         <nav>
             <figure class="logo">
-                <img src="../assets/img/netflix-logo-png-download-11660600814vkfgjh8swu.png" alt="">
+                <img src="../assets/img/newLogo.jpg" alt="">
             </figure>
             <div class="navigationSide">
                 <input @keyup.enter.prevent="$emit('filmSearch')" v-model="store.searchText" type="text" placeholder="Search..">
@@ -29,7 +29,7 @@ export default {
 
 header {
     background-color: $navColor;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    box-shadow: rgba(238, 238, 238, 0.3) 0px 5px 100px, rgba(87, 86, 86, 0.22) 0px 15px 30px;
 }
 
 nav {
