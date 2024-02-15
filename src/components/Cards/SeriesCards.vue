@@ -22,7 +22,7 @@ export default {
 }
 </script>
 <template>
-  <div class="card" :style="{ background: imgError ? 'black' : 'none' }">
+  <div class="card"  :style="{ background: imgError ? 'black' : 'none' }">
     <img :src="imgError ? flagPathError : imagePath + propsObject.poster_path" alt="Film Poster" @error="handleImgError">
     <div class="movieInfo">
       <h2>{{ propsObject.name }}</h2>

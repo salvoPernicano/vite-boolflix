@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios'
 export default {
   name: 'FilmCards',
   props: [
@@ -12,19 +13,36 @@ export default {
       flagPathError: '../src/assets/img/1x1/flag-error.svg',
       fullStarPath : '../src/assets/img/full_star.svg',
       emptyStarPath : '../src/assets/img/empty_star.svg',
+      trailerApi : 'https://api.themoviedb.org/3/movie/videos?language=en-IT&api_key=aac6de8a780b39acd1a8491f2ceaec74'
     }
   },
   methods: {
     handleImgError() {
       this.imgError = true;
     },
+    handleMouseOver() {
+      const videoId = this.propsObject.id;
+      this.trailerApi = `https://api.themoviedb.org/3/movie/${videoId}/videos?language=en-IT&api_key=aac6de8a780b39acd1a8491f2ceaec74`
+      axios.get(this.trailerApi).then(response =>{
+        console.log(response.data.results[0])
+      })
+    }
   }
 }
+
+
 </script>
 <template>
-  <div class="card" :style="{ background: imgError ? 'black' : 'none' }">
+  <div class="card"  :style="{ background: imgError ? 'black' : 'none' }">
     <img :src="imgError ? flagPathError : imagePath + propsObject.poster_path" alt="Film Poster" @error="handleImgError">
     <div class="movieInfo">
+      <!-- <iframe
+      width="560"
+      height="315"
+      :src="propsObject."
+      frameborder="0"
+      allowfullscreen
+    ></iframe> -->
       <h2>{{ propsObject.title }}</h2>
       <h5>{{ 'Titolo orig : ' + " " + propsObject.original_title }}</h5>
       <div>
@@ -40,6 +58,7 @@ export default {
         </div>
         <p>{{ 'Based on '+ propsObject.vote_count + ' reviews' }}</p>
       </span>
+      <button  @click="handleMouseOver" class="trailer">Watch Trailer</button>
     </div>
   </div>
 </template>
@@ -114,6 +133,22 @@ img.starItem {
   justify-content: center;
   align-items: center;
   gap: 2px;
+}
+
+.trailer{
+  border: none;
+  background-color: red;
+  color: white;
+  width: 80%;
+  margin: 0 auto;
+  padding: 5px 2px;
+  transition: all .3s;
+  &:hover{
+    cursor: pointer;
+    background-color: white;
+    color: red;
+    font-weight: bold;
+  }
 }
 
 @media screen and (min-width: 576px) and (max-width: 992px) {

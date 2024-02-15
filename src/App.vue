@@ -5,27 +5,28 @@ import AppHeader from './components/AppHeader.vue'
 import AppMain from './components/AppMain.vue'
 
 export default {
-    components : {
+    components: {
         AppHeader,
         AppMain
     },
-    data(){
+    data() {
         return {
-            store
+            store,
+
         }
     },
-    methods : {
-        getFilm(){
+    methods: {
+        getFilm() {
             store.loading = true;
             store.apiUrlMovie = 'https://api.themoviedb.org/3/search/movie?api_key=aac6de8a780b39acd1a8491f2ceaec74&query='
             store.apiUrlTv = 'https://api.themoviedb.org/3/search/tv?api_key=aac6de8a780b39acd1a8491f2ceaec74&query='
-            if (store.searchText !== ""){
+            if (store.searchText !== "") {
                 store.apiUrlMovie += store.searchText;
                 store.apiUrlTv += store.searchText
             };
 
             axios.get(store.apiUrlMovie).then(response => {
-                console.log(response.data.results);
+                console.log(response.data);
                 store.researchArray = response.data.results
             });
             axios.get(store.apiUrlTv).then(response => {
@@ -33,32 +34,47 @@ export default {
                 store.seriesArray = response.data.results
             });
             store.loading = false;
+        },
+        trendFilms() {
+            store.loading = true;
+            axios.get(store.apiUrlTrending).then(response => {
+                console.log(response.data.results);
+                store.researchArray = response.data.results
+            })
+            store.loading = false
         }
-    }
+    },
+    mounted(){
+        this.trendFilms()
+    },
 }
 </script>
 
 <template>
-    <AppHeader  @filmSearch="getFilm" />
+    <AppHeader @filmSearch="getFilm" />
     <div class="loader" v-if="store.loading"></div>
-<AppMain/>
+    <AppMain @trailerSearch="getTrailer" />
 </template>
 
 <style lang="scss">
 @use './assets/scss/style.scss' as *;
 
 .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-  margin: 0 auto;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}</style>
